@@ -3,7 +3,6 @@ package jpass.crypt;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.Random;
 
 import org.junit.Assert;
@@ -81,7 +80,7 @@ public class CbcTest {
         _decrypt.decrypt(_encrypted.toByteArray());
         _decrypt.finishDecryption();
 
-        Assert.assertTrue(Arrays.equals(source, _decrypted.toByteArray()));
+        Assert.assertArrayEquals(source, _decrypted.toByteArray());
     }
 
     /**
@@ -146,12 +145,12 @@ public class CbcTest {
         encrypt.finishEncryption();
 
         Assert.assertEquals(expected.length, _encrypted.toByteArray().length);
-        Assert.assertTrue(Arrays.equals(expected, _encrypted.toByteArray()));
+        Assert.assertArrayEquals(expected, _encrypted.toByteArray());
 
         decrypt.decrypt(_encrypted.toByteArray());
         decrypt.finishDecryption();
 
-        Assert.assertTrue(Arrays.equals(plain, _decrypted.toByteArray()));
+        Assert.assertArrayEquals(plain, _decrypted.toByteArray());
     }
 
     /**
@@ -177,6 +176,6 @@ public class CbcTest {
         _decrypt.decrypt(_encrypted.toByteArray());
         _decrypt.finishDecryption();
 
-        Assert.assertTrue(Arrays.equals(data, _decrypted.toByteArray()));
+        Assert.assertArrayEquals(data, _decrypted.toByteArray());
     }
 }

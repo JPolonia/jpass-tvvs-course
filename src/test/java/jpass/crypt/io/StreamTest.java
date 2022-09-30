@@ -3,7 +3,6 @@ package jpass.crypt.io;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Random;
 
 import org.junit.Assert;
@@ -54,6 +53,6 @@ public class StreamTest {
         decrypter.close();
 
         Assert.assertEquals(plain.length, decrypted.toByteArray().length);
-        Assert.assertTrue(Arrays.equals(plain, decrypted.toByteArray()));
+        Assert.assertArrayEquals(plain, decrypted.toByteArray());
     }
 }
