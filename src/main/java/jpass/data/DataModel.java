@@ -28,6 +28,7 @@
  */
 package jpass.data;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -124,7 +125,11 @@ public class DataModel {
     }
 
     public void setPassword(byte[] password) {
-        this.password = password;
+        if(password == null) {
+            this.password = new byte[0];
+        } else {
+            this.password = Arrays.copyOf(password, password.length);
+        }
     }
 
     /**
