@@ -3,6 +3,7 @@ package jpass.crypt.io;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Random;
 
 import org.junit.Assert;
@@ -23,14 +24,14 @@ public class StreamTest {
      * Length of the message in <code>byte</code>s.
      */
     private static final int DATA_SIZE = 100;
-
+    private SecureRandom rnd = new SecureRandom ();
     /**
      * A random message will be encrypted and decrypted.
      */
     @Test
     public void shouldDecryptAnEncryptedRandomMessage() throws IOException {
         byte[] key = new byte[32];
-        Random rnd = new Random();
+
         rnd.nextBytes(key);
 
         ByteArrayOutputStream encrypted = new ByteArrayOutputStream();
