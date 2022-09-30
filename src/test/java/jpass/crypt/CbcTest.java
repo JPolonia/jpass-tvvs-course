@@ -2,6 +2,7 @@ package jpass.crypt;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -73,7 +74,7 @@ public class CbcTest {
      */
     @Test
     public void shouldEncryptAndDecryptASmallMessage() throws DecryptException, IOException {
-        byte[] source = "abcdefg".getBytes();
+        byte[] source = "abcdefg".getBytes(StandardCharsets.UTF_8);
         _encrypt.encrypt(source);
         _encrypt.finishEncryption();
 
