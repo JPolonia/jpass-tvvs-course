@@ -5,14 +5,6 @@
 - Filipe Cerqueira - 202204408
 - João Polónia - 201208144
 
-
-- Brief description of your project. For example, What is it? How is the source-code organized?
-- Brief description of what static testing is and why do you think it is import and relevant.
-- Brief description of the static testing tool used in this assignment and how was it configured for your project. Your description must explain, e.g., why did you enabled or disabled any default configuration or bug pattern.
-- Brief description of the report produced by the static testing tool.
-- Brief description of the 5x2 randomly selected bugs.
-- Brief description of how those 5x2 bugs were addressed/fixed. Tip: provide examples before and after fixing those bugs.
-
 ## Static Testing Tool
 
 JPass is a password management application that allows you to store usernames, passwords, links and notes in an encrypted, password-protected file.
