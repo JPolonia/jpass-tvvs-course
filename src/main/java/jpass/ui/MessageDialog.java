@@ -273,7 +273,7 @@ public final class MessageDialog extends JDialog implements ActionListener {
                     incorrect = false;
                 }
             } else {
-                return null;
+                return new byte[0];
             }
         }
 
