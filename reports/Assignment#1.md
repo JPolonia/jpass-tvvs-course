@@ -73,6 +73,7 @@ Third Bug:
 - **Title:** Random object created and used only once and Random type used instead of SecureRandom.
 - **Description:** This code creates a Random object then use it to generate one random number and then discard the object. Also, the Random type object is guessable and could be predictable when using the same seed.
 - **Solution**: The object should be created at the start of the class, so it’s not created every time the method is called. The Random should be replaced to SecureRandom because even with the same seed the values are always different.
+- **Before & After Commit**: [062afa9](https://github.com/jose/jpass/commit/062afa935a33d3b227fa2419c328a3f8ac5f9c03)
 
 Fourth Bug:
 
