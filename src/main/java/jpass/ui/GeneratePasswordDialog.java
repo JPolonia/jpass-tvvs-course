@@ -218,12 +218,13 @@ public final class GeneratePasswordDialog extends JDialog implements ActionListe
         if ("custom_symbols_check".equals(command)) {
             this.customSymbolsField.setEditable(((JCheckBox) e.getSource()).isSelected());
         } else if ("generate_button".equals(command)) {
-            String characterSet = "";
+            StringBuilder buf = new StringBuilder();
             for (int i = 0; i < PASSWORD_OPTIONS.length; i++) {
                 if (this.checkBoxes[i].isSelected()) {
-                    characterSet += PASSWORD_OPTIONS[i][1];
+                    buf.append(PASSWORD_OPTIONS[i][1]);
                 }
             }
+            String characterSet = buf.toString();
 
             if (this.customSymbolsCheck.isSelected()) {
                 characterSet += this.customSymbolsField.getText();
