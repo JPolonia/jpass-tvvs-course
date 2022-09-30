@@ -121,7 +121,7 @@ public class DataModel {
     }
 
     public byte[] getPassword() {
-        return this.password;
+        return Arrays.copyOf(this.password, this.password.length);
     }
 
     public void setPassword(byte[] password) {
