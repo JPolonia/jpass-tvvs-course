@@ -104,25 +104,26 @@ public final class MessageDialog extends JDialog implements ActionListener {
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 5, 5));
         JButton defaultButton;
+        String accept = "accept";
         switch (optionType) {
             case YES_NO_OPTION:
-                defaultButton = createButton("Yes", YES_OPTION, getIcon("accept"));
+                defaultButton = createButton("Yes", YES_OPTION, getIcon(accept));
                 buttonPanel.add(defaultButton);
                 buttonPanel.add(createButton("No", NO_OPTION, getIcon("close")));
                 break;
             case YES_NO_CANCEL_OPTION:
-                defaultButton = createButton("Yes", YES_OPTION, getIcon("accept"));
+                defaultButton = createButton("Yes", YES_OPTION, getIcon(accept));
                 buttonPanel.add(defaultButton);
                 buttonPanel.add(createButton("No", NO_OPTION, getIcon("close")));
                 buttonPanel.add(createButton("Cancel", CANCEL_OPTION, getIcon("cancel")));
                 break;
             case OK_CANCEL_OPTION:
-                defaultButton = createButton("OK", OK_OPTION, getIcon("accept"));
+                defaultButton = createButton("OK", OK_OPTION, getIcon(accept));
                 buttonPanel.add(defaultButton);
                 buttonPanel.add(createButton("Cancel", CANCEL_OPTION, getIcon("cancel")));
                 break;
             default:
-                defaultButton = createButton("OK", OK_OPTION, getIcon("accept"));
+                defaultButton = createButton("OK", OK_OPTION, getIcon(accept));
                 buttonPanel.add(defaultButton);
                 break;
         }
