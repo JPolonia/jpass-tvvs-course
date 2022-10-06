@@ -22,6 +22,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class JUnitTests {
-    
+
+    @ParameterizedTest
+    @MethodSource("StringStripValues")
+    public void TestStripString(String expected, String value, Integer lenght) throws IOException {
+        System.out.println(StringUtils.stripString(value, lenght));
+
+        assertEquals(expected, StringUtils.stripString(value, lenght));
+    }
+    private static Stream<Arguments> StringStripValues() {
+        return Stream.of(
+                arguments("abc...", "abcdefg", 3),
+                arguments("abcde...", "abcdefg", 5),
+                arguments("abcdefg", "abcdefg", 7)
+        );
+    }
 
 }
