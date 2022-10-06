@@ -85,7 +85,6 @@ public class JUnitTests {
     private static Stream<Arguments> StringNonValidXMLCharacters() {
         return Stream.of(
                 arguments("\0"),
-                arguments(""),
                 arguments("noErrorString")
         );
     }
