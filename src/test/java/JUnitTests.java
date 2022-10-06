@@ -76,7 +76,19 @@ public class JUnitTests {
     }
 
     //3º Function
-
+    @ParameterizedTest
+    @MethodSource("StringNonValidXMLCharacters")
+    public void TestStripNonValidXMLCharacters(String value) throws IOException {
+        System.out.println(StringUtils.stripNonValidXMLCharacters(value));
+        assertEquals("?", StringUtils.stripNonValidXMLCharacters(value));
+    }
+    private static Stream<Arguments> StringNonValidXMLCharacters() {
+        return Stream.of(
+                arguments("\0"),
+                arguments(""),
+                arguments("noErrorString")
+        );
+    }
 
     //4º Function
 
