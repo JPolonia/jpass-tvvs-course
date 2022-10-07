@@ -1,8 +1,7 @@
 import jpass.crypt.DecryptException;
-import jpass.util.ClipboardUtils;
-import jpass.util.Configuration;
-import jpass.util.DateUtils;
+import jpass.util.CryptUtils;
 import jpass.util.StringUtils;
+import jpass.util.ClipboardUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,11 +16,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class JUnitTests {
@@ -60,7 +62,7 @@ public class JUnitTests {
             String cliboardContent = ClipboardUtils.getClipboardContent();
             System.out.println(cliboardContent);
             assertEquals(value, cliboardContent);
-            ClipboardUtils.clearClipboardContent();
+            ClipboardUtils.clearClipboardContent(); //colocar num after
         }
         catch(Exception e) {
             System.out.println(e);
@@ -90,7 +92,28 @@ public class JUnitTests {
     }
 
     //4º Function
+    @ParameterizedTest
+    @MethodSource("StringToHashValues")
+    public void TestGetSha256Hash(String value, String expected) throws Exception {
+        byte[] result = CryptUtils.getSha256Hash(value.toCharArray());
+        String sha256hex = byteArrayToHex(result);
+        System.out.println(sha256hex);
+        assertEquals(expected, sha256hex);
+    }
+    private static Stream<Arguments> StringToHashValues() {
+        return Stream.of(
+                arguments(null, ""),
+                arguments("", ""),
+                arguments("abcdefg", "7d1a54127b222502f5b79b5fb0803061152a44f92b37e23c6527baf665d4da9a")
+        );
+    }
 
+    public static String byteArrayToHex(byte[] a) {
+        StringBuilder sb = new StringBuilder(a.length * 2);
+        for(byte b: a)
+            sb.append(String.format("%02x", b));
+        return sb.toString();
+    }
 
 
 
