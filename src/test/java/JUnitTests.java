@@ -2,6 +2,7 @@ import jpass.crypt.DecryptException;
 import jpass.util.CryptUtils;
 import jpass.util.StringUtils;
 import jpass.util.ClipboardUtils;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,12 +63,15 @@ public class JUnitTests {
             String cliboardContent = ClipboardUtils.getClipboardContent();
             System.out.println(cliboardContent);
             assertEquals(value, cliboardContent);
-            ClipboardUtils.clearClipboardContent(); //colocar num after
         }
         catch(Exception e) {
             System.out.println(e);
             //  Block of code to handle errors
         }
+    }
+    @After
+    public void afterTestSetClipboardContent() throws Exception{
+        ClipboardUtils.clearClipboardContent();
     }
     private static Stream<Arguments> StringClipboard() {
         return Stream.of(
