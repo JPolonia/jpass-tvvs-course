@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
 
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
@@ -95,15 +95,22 @@ public class JUnitTests {
     @ParameterizedTest
     @MethodSource("StringToHashValues")
     public void TestGetSha256Hash(String value, String expected) throws Exception {
-        byte[] result = CryptUtils.getSha256Hash(value.toCharArray());
-        String sha256hex = byteArrayToHex(result);
-        System.out.println(sha256hex);
-        assertEquals(expected, sha256hex);
+        if (value == null) {
+            NullPointerException exception = assertThrows(NullPointerException.class, ()->{
+                char[] bla = value.toCharArray();
+            });
+            assertEquals("Cannot invoke \"String.toCharArray()\" because \"value\" is null", exception.getMessage());
+
+        } else {
+            byte[] result = CryptUtils.getSha256Hash(value.toCharArray());
+            String sha256hex = byteArrayToHex(result);
+            assertEquals(expected, sha256hex);
+        }
     }
     private static Stream<Arguments> StringToHashValues() {
         return Stream.of(
                 arguments(null, ""),
-                arguments("", ""),
+                arguments("", "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"),
                 arguments("abcdefg", "7d1a54127b222502f5b79b5fb0803061152a44f92b37e23c6527baf665d4da9a")
         );
     }
