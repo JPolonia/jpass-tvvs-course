@@ -1,12 +1,6 @@
 ## Assignment #2 - TVVS
 
 ---
-- Which functions have you selected for testing and why.
-- What is the purpose of each function.
-- Step-by-step of the ‘Category-Partition’ algorithm for each function.
-- Brief description of the unit tests generated for each category.
-- Brief description of the outcome of each unit test and whether any test results in a failure (and why).
-
 
 - Filipe Cerqueira - 202204408
 - João Polónia - 201208144
@@ -26,49 +20,125 @@ The functions used for testing were selected based on the ones with most documen
 
 1º Function:
 
-- **Name:** stripString
+- **Name:** StringUtils.stripString
 - **Purpose:** The main purpose of this method is to concatenate the given string in number of characters given in the parameters.
 - **Test Description:** The test was giving the same string with different length values expecting it to match the expected values. 
 - **Outcome Description:** The outcome was has expected, for any value besides the size it always concatenated to the length pretended.
-- **Did it fail? Why?:**  No.
-- **Commit**: [983dfde](https://github.com/jose/jpass/commit/983dfdeb2a649b6e153ec6ebce2e11ed6064f871)
+- **Category Partition Algorithm:**
 
-
+    - Parameters:
+        - String text
+        - int length
+    - Characteristics:
+        - text:
+            - null
+            - empty
+            - not empty
+        - length:
+            - null
+            - zero
+            - greater than zero
+    - Restrictions:
+        - If length is null other inputs are ignored
+        - if length is zero other inputs are ignored
+    - Combination tests:
+        - INPUT length is null -> OUTPUT exception -> PASS
+        - INPUT length is zero -> OUTPUT text -> PASS
+        - INPUT length > 0 and text is null -> OUTPUT text -> PASS
+        - INPUT length > 0 and text is empty -> OUTPUT text -> PASS
+        - INPUT length > 0 and text is not empty -> OUTPUT text stripped -> PASS
+    
 2º Function:
 
-- **Name:** SetClipboardContent
+- **Name:** ClipboardContent.SetClipboardContent
 - **Purpose:** The main purpose of this method is to set a value on computer clipboard.
-- **Description:** On the test it was set a value to the computer clipboard and then compared with the value from the method that gets the computer clipboard to make sure the value was the same.  
-- **Outcome:** For any value tested, the result was always success.
-- **Did it fail? Why?:** No.
-- **Commit**: [87c48b6](https://github.com/jose/jpass/commit/87c48b668ca5933e6bdb9ab1ea5148ea587f00fd)
+- **Category Partition Algorithm:**
 
+    - Parameters:
+      - String str 
+      - System Clipboard
+    - Characteristics:
+        - str:
+            - null 
+            - empty
+            - not empty
+        - System Clipboard:
+            - empty
+            - not empty
+            - accessible
+            - not accessible
+    - Restrictions:
+        - If the System Clipboard is not accessible other inputs are ignored
+        - If str is null other inputs are ignored
+    - Combination tests:
+        - INPUT System Clipboard is not accessible -> OUTPUT exception -> PASS
+        - INPUT str is null -> OUTPUT exception -> PASS
+        - INPUT System Clipboard is empty and accessible and str is empty -> Clipboard should be empty
+        - INPUT System Clipboard is empty and accessible and str is not empty -> OUTPUT Clipboard should be equal to str -> PASS
+        - INPUT System Clipboard is not empty and accessible and str is not empty -> OUTPUT Clipboard should be equal to str -> PASS
 
 3º Function:
 
-- **Name:** StripNonValidXMLCharacters
+- **Name:** StringUtils.StripNonValidXMLCharacters
 - **Purpose:** The main purpose of this method is to confirm whether the string contains any non-valid XML characters, and if so change it to a "?".
 - **Description:** During the test it was used a string that was non-valid XML char, and it changed to a question mark and a normal value and as expected it didn't change so the test failed.
-- **Outcome:** The outcome for the non-valid XMl was has expected and for the valid XML char it reproduced a failure on the test has we predicted.
-- **Did it fail? Why?:** Yes, because during the test we used a valid XML char that did not return a question mark, which caused the assertEquals to not return a positive result.
-- **Commit**: [46da58a](https://github.com/jose/jpass/commit/46da58a2f257f4a0fdb2cd06c9f69a5b8f9f5b07)
+- **Outcome:** The outcome for the non-valid XMl was has expected and for the valid XML char it reproduced with the question mark.
+- **Category Partition Algorithm:**
 
+    - Parameters:
+        - String in
+    - Characteristics:
+        - in:
+            - null
+            - empty
+            - not empty and contains non-valid XML char
+            - not empty and contains only valid XML chars
+    - Restrictions:
+        - No special restrictions
+    - Combination tests:
+        - INPUT in is null -> OUTPUT empty -> PASS
+        - INPUT in is empty -> OUTPUT empty -> PASS
+        - INPUT in is not empty and contains non-valid XML char -> OUTPUT Invalid XML changed with "?"  -> PASS
+        - INPUT in is not empty and contains only valid XML char -> OUTPUT Valid XML  -> PASS
 
 4º Function:
 
 - **Name:** CryptUtils.getSha256Hash
-- **Purpose:** Calculate SHA-256 hash
-- **Description:**
-- **Outcome:**
-- **Did it fail? Why?:** No
-- **Commit**: [6b2216e](https://github.com/jose/jpass/commit/6b2216e2090fc2ed169bc4cb3ce29422b4ebfd5a)
-
+- **Purpose:** Calculate SHA-256 hash of a given String / Char Array
+- **Category Partition Algorithm:** 
+  
+  - Parameters:
+    - String text
+  - Characteristics:
+    - text: 
+      - null 
+      - empty
+      - not empty
+  - Restrictions:
+    - No special restrictions
+  - Combination tests:
+    - INPUT text is null -> OUTPUT exception -> PASS
+    - INPUT text is empty -> OUTPUT SHA25(empty) -> PASS 
+    - INPUT text is not empty -> OUTPUT SHA25(text) -> PASS
 
 5º Function:
 
-- **Name:**
-- **Purpose:**
-- **Description:**
-- **Outcome:**
-- **Did it fail? Why?:**
-- **Commit**: [6b2216e](https://github.com/jose/jpass/commit/6b2216e2090fc2ed169bc4cb3ce29422b4ebfd5a)
+- **Name:** ClipboardContent.clearClipboardContent
+- **Purpose:**  Clears contents from System Clipboard
+- **Category Partition Algorithm:**
+
+    - Parameters:
+        - System Clipboard
+    - Characteristics:
+        - System Clipboard:
+            - empty 
+            - not empty
+            - accessible
+            - not accessible
+    - Restrictions:
+        - If the System Clipboard is not accessible doesn't need to check if it's empty or not
+    - Combination tests:
+        - INPUT System Clipboard is not accessible -> OUTPUT exception -> PASS
+        - INPUT System Clipboard is empty and accessible -> OUTPUT Clipboard should be empty -> PASS
+        - INPUT System Clipboard is not empty and accessible -> OUTPUT Clipboard should be empty -> PASS
+
