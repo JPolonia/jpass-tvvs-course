@@ -107,12 +107,18 @@ public class JUnitTests {
             assertEquals(expected, sha256hex);
         }
     }
-    private static Stream<Arguments> StringToHashValues() {
-        return Stream.of(
-                arguments(null, ""),
-                arguments("", "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"),
-                arguments("abcdefg", "7d1a54127b222502f5b79b5fb0803061152a44f92b37e23c6527baf665d4da9a")
-        );
+
+    //5º Function
+    @Test
+    public void TestClearClipboardContent() throws Exception {
+        ClipboardUtils.setClipboardContent("Test");
+        ClipboardUtils.clearClipboardContent();
+        String cliboardContent = ClipboardUtils.getClipboardContent();
+        assertEquals(null, cliboardContent);
+        ClipboardUtils.setClipboardContent("");
+        ClipboardUtils.clearClipboardContent();
+        cliboardContent = ClipboardUtils.getClipboardContent();
+        assertEquals(null, cliboardContent);
     }
 
     public static String byteArrayToHex(byte[] a) {
@@ -121,11 +127,6 @@ public class JUnitTests {
             sb.append(String.format("%02x", b));
         return sb.toString();
     }
-
-
-
-    //5º Function
-
 
 
     @AfterEach
