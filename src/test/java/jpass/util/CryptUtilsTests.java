@@ -43,7 +43,7 @@ public class CryptUtilsTests {
 
     private static Stream<Arguments> StringToHashValues() {
         return Stream.of(
-                arguments("", ""),
+                arguments("", "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"),
                 arguments("abcdefg", "7d1a54127b222502f5b79b5fb0803061152a44f92b37e23c6527baf665d4da9a")
         );
     }
