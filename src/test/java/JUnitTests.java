@@ -40,10 +40,10 @@ public class JUnitTests {
     //1º Function
     @ParameterizedTest
     @MethodSource("StringStripValues")
-    public void TestStripString(String expected, String value, Integer lenght) throws IOException {
-        System.out.println(StringUtils.stripString(value, lenght));
+    public void TestStripString(String expected, String value, Integer length) throws IOException {
+        System.out.println(StringUtils.stripString(value, length));
 
-        assertEquals(expected, StringUtils.stripString(value, lenght));
+        assertEquals(expected, StringUtils.stripString(value, length));
     }
     private static Stream<Arguments> StringStripValues() {
         return Stream.of(
@@ -110,6 +110,14 @@ public class JUnitTests {
             String sha256hex = byteArrayToHex(result);
             assertEquals(expected, sha256hex);
         }
+    }
+
+    private static Stream<Arguments> StringToHashValues() {
+        return Stream.of(
+                arguments(null, ""),
+                arguments("", ""),
+                arguments("abcdefg", "7d1a54127b222502f5b79b5fb0803061152a44f92b37e23c6527baf665d4da9a")
+        );
     }
 
     //5º Function
