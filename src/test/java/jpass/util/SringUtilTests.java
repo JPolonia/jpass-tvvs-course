@@ -15,7 +15,6 @@ public class SringUtilTests {
 
     //Blackbox testing - boundary value analysis
     //1º Function
-    @Test
     @ParameterizedTest
     @MethodSource("TestStripStringBoundary")
     public void TestStripStringBoundary(String text, Integer length, String result, Integer expectedLenght) throws IOException {
