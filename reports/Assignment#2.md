@@ -118,8 +118,8 @@ The functions used for testing were selected based on the ones with most documen
     - No special restrictions
   - Combination tests:
     - INPUT text is null -> OUTPUT exception -> PASS
-    - INPUT text is empty -> OUTPUT SHA25(empty) -> PASS 
-    - INPUT text is not empty -> OUTPUT SHA25(text) -> PASS
+    - INPUT text is empty -> OUTPUT SHA256(empty) -> PASS 
+    - INPUT text is not empty -> OUTPUT SHA256(text) -> PASS
 
 5º Function:
 
