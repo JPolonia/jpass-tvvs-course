@@ -20,7 +20,8 @@ This use case is adding a new entry. The user saves the login username and passw
 
 
 ### Sneak Path Testing: Transition table
-All empty cells are sneaky transitions, within our tests we confirmed the aplication did the right job in blocking them from happening. We tried to break it but the results were always as expected.
+All empty cells are sneaky transitions, within our tests we confirmed the aplication did the right job in blocking them from happening. We tried to break it but the results were always as expected.  
+
 | **States/Events**          | **Click Add Entry** | **ok [title not empty]** | **ok [title empty]** | **cancel**      | **accept[NOT empty]** | **click generate password** | **accept [password empty]** | **ok[title NOT duplicate or empty]** |
 |----------------------------|---------------------|--------------------------|----------------------|-----------------|-----------------------|-----------------------------|-----------------------------|--------------------------------------|
 | **Idle**                   | Entry Form Menu     | -                        | -                    | -               | -                     | -                           | -                           | -                                    |
